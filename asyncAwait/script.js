@@ -27,3 +27,11 @@ const getDatos = async () => {
 getDatos();
 
 //-----------------------------------------------------------------------
+
+async function mostrarDatos() {
+    let respuesta = await fetch('https://api.github.com/users/JuanDuran85/repos');
+    let repositorios = await respuesta.json();
+    console.log(repositorios);
+}
+
+mostrarDatos();
