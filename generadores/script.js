@@ -60,4 +60,29 @@ console.log(resultado2.next());
 console.log(resultado2.next());
 
 // -----------------------------------------------------
+/* Delegacion de generadores: cuando un generador delega la continuidad a otro generador permitiendo encadenar cuantos generadores se necesiten en la ejecucion del codigo. Se agrega un * despues de yield*/
+
+function* cuenta2() {
+    for (let i = 0; i < 5; i++) { 
+        yield i;
+    }
+};
+
+function* retornador() {
+    yield* cuenta2();
+    console.log("Final de retornador...")
+}
+
+let retorna = retornador();
+
+console.log(retorna.next());
+console.log(retorna.next());
+console.log(retorna.next());
+console.log(retorna.next());
+console.log(retorna.next());
+console.log(retorna.next());
+console.log(retorna.next());
+
+
+
 
