@@ -1,2 +1,2 @@
-# Ejemplos_de_JavaScript
-Ejemplos basicos de JavaScript
+# Ejemplos de JavaScript
+Ejemplos básicos de JavaScript
