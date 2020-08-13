@@ -67,10 +67,17 @@ let iterador4 = {
             resultado = {value: this.indice, done:false};
             this.indice++;
         } else {
-            resultado = {done:true}
+            resultado = {value: "Fuera de Rango", done:true}
         }
         return resultado;
     }
 }
 
-console.log(iterador4.next());
+let iterando = iterador4.next();
+
+while (!iterando.done) {
+    console.log(iterando.value);
+    iterando = iterador4.next();
+};
+
+console.log(iterando.value);
