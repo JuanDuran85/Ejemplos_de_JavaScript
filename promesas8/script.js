@@ -1,12 +1,13 @@
 function calcular() {
     return new Promise((resolve,reject)=>{
-        setTimeout(resolve,500,5);
+        setTimeout(resolve,1500,5);
     })
 }
 
-function calcularDos() {
+function calcularDos(numero) {
+    console.log(numero)
     return new Promise((resolve,reject)=>{
-        setTimeout(resolve,300,"segunda promesa");
+        setTimeout(resolve,1300,"segunda promesa");
     })
 }
 
