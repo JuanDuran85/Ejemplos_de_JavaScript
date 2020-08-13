@@ -35,3 +35,17 @@ async function mostrarDatos() {
 }
 
 mostrarDatos();
+
+//-----------------------------------------------------------------------
+
+async function mostrarDatos2() {
+    try {
+        let respuesta = await fetch('https://api.github.com/users/JuanDuran85/repo');
+        let repositorios = await respuesta.json();
+        console.log(repositorios);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+mostrarDatos2();
