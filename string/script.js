@@ -40,3 +40,66 @@ console.log(numero.padEnd(2,"0"));
 console.log("A".localeCompare("z")); //-1
 console.log("Z".localeCompare("A")); // 1
 console.log("B".localeCompare("B")); // 0
+
+console.log("SalUdOs".toLowerCase().localeCompare("saluDos".toLowerCase()));
+
+//-------------------------------------------------------------------------------
+
+/* Para iterar cadenas se recomienda utilizar el ciclo for...of */
+
+let texto = "JavaScript ⚽";
+
+for (let i = 0; i < texto.length; i++) {
+    console.log(texto[i]);
+}
+
+for (const iterator of texto) {
+    console.log(iterator);
+};
+
+let texto2 = "VueJS ⚽";
+console.log(texto2.substring(0,5));
+console.log(texto2.slice(1,5));
+console.log(texto2.slice(-5));
+
+let texto3 = "His audiam deserunt in, eum ubique voluptatibus te. In reque dicta usu. Ne rebum"
+console.log(texto3.indexOf("deserunt"));
+console.log(texto3.indexOf("saludos"));
+if (texto3.indexOf("deserunt") > 0) { // -1 para no encontrado
+    console.log("Encontrado");
+}else{
+    console.log("No encontrado");
+}
+
+console.log(texto3.includes("voluptatibus"));
+console.log(texto3.includes("saludos"));
+if (texto3.includes("voluptatibus")) { //retorna true o false
+    console.log("Encontrado");
+}else{
+    console.log("No encontrado");
+}
+
+
+// ------------------------------------------------------------------------
+
+/* El método startsWith() indica si un string inicia con los caracteres de otro string, regresando true o false según sea el caso. */
+
+let enlace = "https://www.google.com/";
+if (enlace.startsWith("https://")) {
+    console.log("Es un enlace seguro");
+} else {
+    console.error("No es un enlace seguro");
+}
+
+let imagen = "imagen.jpg";
+
+if (imagen.endsWith("jpg")) {
+    console.log("Es una imagen");
+} else {
+    console.error("No es una imagen");
+}
+
+//---------------------------------------------------------------------
+
+
+
