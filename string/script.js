@@ -101,5 +101,13 @@ if (imagen.endsWith("jpg")) {
 
 //---------------------------------------------------------------------
 
+let palabras = "Expetenda tincidunt in sed, ex partem placerat sea...";
+
+console.log(palabras.split()); // sin separar
+console.log(palabras.split("")); // separando caracter por caracter
+console.log(palabras.split(" ")); // separando por palabra
+
+let separadas = palabras.split(" ");
+console.log(separadas.join(" ")); // une un arreglo en un solo string
 
 
