@@ -83,6 +83,16 @@ console.log(retorna.next());
 console.log(retorna.next());
 console.log(retorna.next());
 
+//--------------------------------------------------
 
+function* conteo() {  
+    for (let i = 1; i <= 5; i++) {
+        yield i;
+    }
+};
 
+let resultado3 = conteo();
 
+for (numero of resultado3) {
+    console.log(numero)
+}
