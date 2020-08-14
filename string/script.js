@@ -146,3 +146,26 @@ function censurando(texto) {
 let resultado = censurando(comentarios);
 console.log(resultado);
 
+//------------------------------------------------------------
+console.log("  Mensaje   ".trim());
+console.log("  Mensaje   ".trimStart());
+console.log("  Mensaje   ".trimEnd());
+
+console.log("Mensaje".repeat(2));
+
+console.log("Mensaje desde Consola".replace("Consola","JavaScript"));
+
+//----------------------------------------------------------------------------
+/* Unicode */
+// El charCodeAt() método devuelve un número indicando el valor Unicode del carácter en el índice proporcionado.
+
+function aCodigoUni(caracter) {
+    let hexa = caracter.charCodeAt(0).toString(16); //convierte caracter en hexadecimal
+    let uni = "\\u" + "0000".substring(0,4 - hexa.length) + hexa; //agrega los 0 faltantes al inicio de la cadena
+    return {uni,hexa}
+}
+
+let resultado = aCodigoUni("a");
+console.log(resultado.hexa);
+console.log(resultado.uni);
+console.log("\u0061"); // muestra el caracter
