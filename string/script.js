@@ -111,3 +111,38 @@ let separadas = palabras.split(" ");
 console.log(separadas.join(" ")); // une un arreglo en un solo string
 
 
+// ----------------------------------------------------------------------
+
+let comentarios2 = "Aprendiendo a trabajar con JavaScript utilizando una computadora Acer, una Dell y una HP";
+
+function censurando(texto) {
+    let final = texto.split(" ").map(palabra =>{
+        return (palabra.includes("Acer") ? "XXXXXX" : palabra);
+    })
+    return final.join(" ");
+};
+
+let resultado2 = censurando(comentarios2);
+console.log(resultado2);
+
+//----------------------------------------------------------------------------------------
+
+let comentarios = "Aprendiendo a trabajar con JavaScript utilizando una computadora Acer, una Dell y una HP";
+
+function censurando(texto) {
+    let final = texto.split(" ").map(palabra =>{
+        if (palabra.includes("Acer")) {
+            palabra = "XXXXX"
+        } else if(palabra.includes("Dell")){
+            palabra = "XXXXX"
+        } else if (palabra.includes("HP")){
+            palabra = "XXXXX"
+        }
+        return palabra;
+    })
+    return final.join(" ");
+};
+
+let resultado = censurando(comentarios);
+console.log(resultado);
+
