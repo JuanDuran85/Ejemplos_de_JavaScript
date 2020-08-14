@@ -29,3 +29,14 @@ console.log(numero.padEnd(2,"0"));
 
 //------------------------------------------------------------------------
 
+/* El método localeCompare() devuelve un número que indica si la cadena de caracteres actual es anterior, posterior o igual a la cadena pasada como parámetro, en orden lexicográfico.
+
+    -1 if the reference string is sorted before the compareString
+    0 if the two strings are equal
+    1 if the reference string is sorted after the compareString
+
+*/
+
+console.log("A".localeCompare("z")); //-1
+console.log("Z".localeCompare("A")); // 1
+console.log("B".localeCompare("B")); // 0
