@@ -169,3 +169,17 @@ let resultado = aCodigoUni("a");
 console.log(resultado.hexa);
 console.log(resultado.uni);
 console.log("\u0061"); // muestra el caracter
+
+//----------------------------------------------------------------------
+/* Un conjunto es un conjunto de distintas convinaciones para hacer busqueda de un caracter o un patrón*/
+
+console.log("abcd".match(/[abcd]/)); // el rango especifica que cualquiera de las opciones
+console.log("abcd".match(/abcd/));
+console.log("b".match(/[abcd]/));
+console.log("b".match(/abcd/));
+
+console.log("La direccion con https".match(/(http)|(https)/));
+
+
+
+
