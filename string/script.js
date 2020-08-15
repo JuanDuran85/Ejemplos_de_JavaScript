@@ -181,8 +181,20 @@ console.log("b".match(/abcd/));
 console.log("La direccion con https".match(/(http)|(https)/));
 
 console.log("Hola".match(/H[ol]a/));
-console.log("Hoa".match(/H[ol]a/));
-console.log("Hla".match(/H[ol]a/));
+console.log("Hola".match(/[a-z]/g));
+console.log("913".match(/[0-4]/g));
+console.log("-ba".match(/[-a]/));
+
+//------------------------------------------------------------------------
+
+/* 
+    \d es igual al rango de [0-9], es decir, cualquier digito
+    \w es igual al rango de [a-zA-Z0-9_], representa cualquier digito, cualquier letra o guin bajo
+     
+*/
+
+
+
 
 
 
