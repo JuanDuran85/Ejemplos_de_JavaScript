@@ -180,6 +180,9 @@ console.log("b".match(/abcd/));
 
 console.log("La direccion con https".match(/(http)|(https)/));
 
+console.log("Hola".match(/H[ol]a/));
+console.log("Hoa".match(/H[ol]a/));
+console.log("Hla".match(/H[ol]a/));
 
 
 
