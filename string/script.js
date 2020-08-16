@@ -190,8 +190,12 @@ console.log("-ba".match(/[-a]/));
 /* 
     \d es igual al rango de [0-9], es decir, cualquier digito
     \w es igual al rango de [a-zA-Z0-9_], representa cualquier digito, cualquier letra o guin bajo
-     
+     \d* es igual a cualquier cantidad de digitos a partir de cero
+     \S es cualquier caracter que no sea un espacio en blanco
 */
+
+console.log("123-456-789-".match(/(\d-)*/g));
+console.log("123-456-789-".match(/(\d-)+/g));
 
 
 
