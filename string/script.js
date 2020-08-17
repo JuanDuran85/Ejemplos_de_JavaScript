@@ -192,10 +192,48 @@ console.log("-ba".match(/[-a]/));
     \w es igual al rango de [a-zA-Z0-9_], representa cualquier digito, cualquier letra o guin bajo
      \d* es igual a cualquier cantidad de digitos a partir de cero
      \S es cualquier caracter que no sea un espacio en blanco
+     para asignar un nombre a un grupo se utiliza ?<nombre_grupo>
 */
 
 console.log("123-456-789-".match(/(\d-)*/g));
 console.log("123-456-789-".match(/(\d-)+/g));
+console.log("correo_correo.correo@correo.com".match(/\S+@\S+/));
+console.log("correo_correo.correo@correo.com".match(/(\S+)@\S+/));
+console.log("correo_correo@correo.com".match(/(?<usuario>\S+)@\S+/));
+console.log("correo_correo@correo.com".match(/(?:\S+)@\S+/)); // grupo que no se recuerde
+
+//---------------------------------------------------------------------------------
+
+/* 
+    Cuentificadores:
+    * este hace match del elemento anterior cero o mas veces, o cero ocurrencia
+    + hacer match del elemento anterior una o mas veces
+    {} numero fijo de ocurrencia o para especificar rangos
+    ? el elemento anterior puede o no puede estar (opcional)
+    . (El punto decimal) coincide con cualquier carácter precedente excepto un carácter de nueva línea
+    por defecto los cuantificadores son codiciosos
+*/
+
+console.log("3333".match(/\d*/));
+console.log("".match(/\d*/));
+console.log("".match(/\d+/));
+console.log("12345".match(/\d+/));
+console.log("12345".match(/\d{3}/));
+console.log("81".match(/\d{3,5}/));
+console.log("812".match(/\d{3,5}/));
+console.log("8129097671".match(/\d{3,5}/));
+console.log("https://www.alirafael.com".match(/https?:\/{2}w{3}/));
+console.log("<p>Etiqueta P</p>".match(/<.+>/));
+console.log("<p>Etiqueta P</p>".match(/<.+?>/)); // el ? cambia el cuantificador de modo codicioso a modo perezoso
+
+
+//---------------------------------------------------------------------------------
+
+let enlace = "http://alirafael.com/";
+
+console.log(enlace.replace(/(https?:\/{2}(\S+\.)?\S+(\.\S+)(\.\S+)?)/,"Visita: <a href='$1'>$1</a>"));
+
+
 
 
 

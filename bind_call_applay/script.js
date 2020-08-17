@@ -47,7 +47,7 @@ saludar2.apply(this,["Juan"]);
 //----------------------------------------------------------------------
 
 function ejecutar3(funcion) {
-    funcion.apply(tutor);
+    funcion.apply(tutor3);
 }
 
 let tutor3 = {
@@ -59,4 +59,4 @@ let tutor3 = {
     }
 }
 
-ejecutar3(tutor3.nombreCompleto.bind(tutor));
+ejecutar3(tutor3.nombreCompleto.bind(tutor3));
