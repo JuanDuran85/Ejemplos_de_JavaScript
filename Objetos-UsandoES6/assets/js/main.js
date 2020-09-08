@@ -1,6 +1,6 @@
 import Clientes from './clientes.js';
 import Impuestos from './impuestos.js';
-
+console.log("Incorporado");
 let resultado = document.getElementById('resultado');
 
 let calculando = (event) => {
@@ -13,6 +13,7 @@ let calculando = (event) => {
     resultado.innerHTML = cliente1.calcularImpuesto();
 };
 
-let formulario = document.querySelector('form');
-formulario.addEventListener('submit', calculando);
+var calcular = document.querySelector('button');
+console.log(calcular);
+calcular.addEventListener('click', calculando);
 
