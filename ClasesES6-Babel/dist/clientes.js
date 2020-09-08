@@ -27,7 +27,7 @@ var Cliente = /*#__PURE__*/function () {
   _createClass(Cliente, [{
     key: "calcularImpuesto",
     value: function calcularImpuesto() {
-      return (this._impuestos()._monto_bruto_anual() - this._impuestos()._deducciones()) * 0.21;
+      return "El impuesto total a pagar es: ".concat((this._impuestos()._monto_bruto_anual() - this._impuestos()._deducciones()) * 0.21);
     }
   }, {
     key: "cliente",
