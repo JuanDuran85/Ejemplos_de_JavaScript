@@ -68,3 +68,25 @@ let obrero1 = new Obrero('Manuel','Electricidad','Fijo',true);
 console.log(admin1);
 console.log(docente1);
 console.log(obrero1);
+
+//--------------------------------------------------------------------------------
+
+class Poligono {
+   constructor(alto,ancho){
+      this.alto = alto;
+      this.ancho = ancho;
+   }
+}
+
+class Rectangulo extends Poligono {
+   constructor(alto,ancho){
+      super(alto,ancho);
+   }   
+   calcularArea(){
+      return this.alto * this.ancho;
+   }
+}
+
+var rec1 = new Rectangulo(3,4);
+console.log(rec1);
+console.log(rec1.calcularArea());
