@@ -28,4 +28,24 @@ Administrador.prototype = new User();
 let admin1 = new Administrador();
 admin1.saludar();
 
+//--------------------------------------------------------------------------------
+
+function Poligono(alto, ancho){
+    this.alto = alto;
+    this.ancho = ancho;
+}
+
+function Rectangulo(alto,ancho){
+    this.prototype = Object.create(Poligono.prototype);
+    Poligono.call(this, alto, ancho);
+}
+
+Rectangulo.prototype.calcularArea = function(){
+    return this.alto * this.ancho;
+}
+
+var rec1 = new Rectangulo(3,4);
+console.log(rec1.calcularArea());
+  
+
 
