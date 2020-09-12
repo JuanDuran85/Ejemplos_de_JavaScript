@@ -90,3 +90,36 @@ class Rectangulo extends Poligono {
 var rec1 = new Rectangulo(3,4);
 console.log(rec1);
 console.log(rec1.calcularArea());
+
+// ------------------------------------------------------------------------
+
+class Producto {
+   constructor(nombre, precio, sku){
+      this.nombre = nombre;
+      this.precio  = precio;
+      this.sku  = sku;
+   }
+   generarCodigo(){
+    console.log(this.nombre+this.precio+this.sku);
+   }
+}
+  
+class Movil extends Producto{
+   constructor(nombre, precio, sku, sistemaOperativo) {
+      super(nombre, precio, sku);
+      this.sistemaOperativo = sistemaOperativo;
+   }
+
+   instalarApp(){
+      console.log("Instalando APP");
+   }
+}
+
+var telefono1 = new Movil('Samsung', 220000, 'GK234', 'Android');
+
+console.log(telefono1.nombre);
+console.log(telefono1.sku);
+console.log(telefono1.precio);
+console.log(telefono1.sistemaOperativo);
+telefono1.generarCodigo();
+telefono1.instalarApp();
