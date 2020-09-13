@@ -10,16 +10,32 @@ class APoligono {
 class Rectangulo extends APoligono {
     constructor(x, y) {
         super();
-        this.x = x;
-        this.y = y
+        this._x = x;
+        this._y = y
+    }
+
+    get x() {
+        return this._x;
+    }
+
+    get y() {
+        return this._y;
+    }
+
+    set x(nueva_x) {
+        this._x = nueva_x;
+    }
+
+    set y(nueva_y) {
+        this._y = nueva_y;
     }
  
     calcularArea() {
-        return this.x * this.y;
+        return this._x * this._y;
     }
  
     calcularPerimetro() {
-        return (this.x + this.y) * 2;
+        return (this._x + this._y) * 2;
     }
 }
 

@@ -47,3 +47,33 @@ var v1 = new Vehiculos("Ford");
 console.log(v1.marca);
 v1.marca = "Kia";
 console.log(v1.marca);
+
+//-------------------------------------------------------------------------------
+
+class Fechas {
+  constructor(dia, mes, ano) {
+    this._dia = dia;
+    this._mes = mes;
+    this._ano = ano;
+  }
+  get fechaActual (){
+    return `La fecha ingresa fue: ${this._dia}-${this._mes}-${this._ano}`
+  }
+}
+
+class Actual extends Fechas {
+  constructor(dia, mes, ano){
+    super(dia, mes, ano)
+  }
+  static hoy() {
+    let fecha = new Date();
+    let dia = fecha.getDate();
+    let mes = fecha.getMonth() + 1;
+    let ano = fecha.getFullYear();
+    return new Actual(dia, mes, ano);
+  }
+}
+
+let fechaNueva = new Actual(16,05,2000);
+console.log(fechaNueva.fechaActual);
+console.log(Actual.hoy());
