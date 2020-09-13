@@ -55,32 +55,33 @@ console.log(rec1.calcularArea());
 // ---------------------------------------------------------------
 
 // constructor
-function Product(name, year, price) {
-    this.name = name;
-    this.year = year;
-    this.price = price;
+function Producto(nombre, precio, sku){
+    this.nombre = nombre;
+    this.precio  = precio;
+    this.sku  = sku;
 }
- 
+   
 // método
-Product.prototype.generateBarcode = function() {
-  console.log('Método generateBarcode');
+Producto.prototype.generarCodigo = function() {
+  console.log(this.nombre+this.precio+this.sku);
 }
  
 // constructor
-function Smartphone(name, year, price, os) {
-    Product.call(this, name, year, price);
-    this.os = os;
+function Movil(nombre, precio, sku, sitemaOperativo) {
+    Producto.call(this, nombre, precio, sku);
+    this.sitemaOperativo = sitemaOperativo;
 }
- 
+
 // herencia
-Smartphone.prototype = Object.create(Product.prototype);
-Smartphone.prototype.constructor = Smartphone;
- 
- 
+Movil.prototype = Object.create(Producto.prototype);
+Movil.prototype.constructor = Movil;
+
 // instancia clase
-var iphone = new Smartphone('iPhone', 2018, 999, 'iOS');
+var telefono1 = new Movil('Samsung', 220000, 'GK234', 'Android');
  
 // llamada método
-console.log(iphone.name); // iPhone
-console.log(iphone.os); // iOS
-iphone.generateBarcode(); // Método generateBarcode
+console.log(telefono1.nombre);
+console.log(telefono1.sku);
+console.log(telefono1.precio);
+console.log(telefono1.sitemaOperativo);
+telefono1.generarCodigo();
