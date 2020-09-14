@@ -47,7 +47,7 @@ class Propietario {
          this.telefono = telefono;
     }
     datosPropietario(){
-        return `El nombre del dueño es: ${this.nombreP}, la direccion: ${this.direccion} y el numero telefonico es: ${this.telefono}`;
+        return `El nombre del dueño es: ${this.nombreP}. El domicilio es: ${this.direccion}, y el número telefónico de contacto: ${this.telefono}`;
     }
 }
 
@@ -58,7 +58,7 @@ class Animal extends Propietario{
         this.tipo = tipo;
     }
     datosAnimal(){
-        return `El nombre del animal es: ${this.nombreA}, y es un: ${this.tipo}`;
+        return `El nombre del animal es: ${this.nombreA}. Siendo este un: ${this.tipo}`;
     }
 }
  
