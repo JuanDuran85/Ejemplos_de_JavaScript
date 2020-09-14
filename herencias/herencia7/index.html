@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio</title>
+</head>
+<body>
+    <h2>Tipo de Evaluación a Realizar</h2>
+    <form>
+        <label for="nombre">Ingrese el nombre del participante: <input type="text" id="nombre"></label>
+        <br>
+        <label for="apellido">Ingrese el apellido del participante: <input type="text" id="apellido"></label>
+        <br>
+        <label for="varios">Ingrese el numerom de preguntas, requerimientos o temas: <input type="number" id="varios"></label>
+        <br>
+        <label for="duracion">Ingrese el duracnion de la evaluacion en minutos: <input type="number" id="duracion"></label>
+        <br>
+        <label for="tipo">Seleccione el tipo de evaluacion: 
+            <select name="tipo" id="tipo">
+                <option value="quiz">Quiz</option>
+                <option value="desafio">Desafio</option>
+                <option value="proyecto">Proyecto</option>
+            </select>
+        </label>
+        <br>
+        <button>Enviar</button>
+    </form>
+    <div id="resultado"></div>
+    <script src="./script.js"></script>
+</body>
+</html>
