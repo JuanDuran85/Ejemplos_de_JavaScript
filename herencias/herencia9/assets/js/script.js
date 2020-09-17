@@ -1,21 +1,29 @@
 let sugerencias = (() => {
-
     let musica = document.querySelector('#musica');
     let peliculas = document.querySelector('#peliculas');
     let series = document.querySelector('#series');
-   
-    return {
-        mostrandoMusica: (videoMostrar)=>{
-            musica.insertAdjacentHTML('afterbegin', videoMostrar);
-        },
-        mostrandoPelicula: (videoMostrar)=>{
-            peliculas.insertAdjacentHTML('afterbegin', videoMostrar);
-        },
-        mostrandoSeries: (videoMostrar)=>{
-            series.insertAdjacentHTML('afterbegin', videoMostrar);
-        }
+    
+    insertarMusica = (videoMostrar) => {
+        musica.insertAdjacentHTML('afterbegin', videoMostrar);
+    }
+    insertarPelicua = (videoMostrar) => {
+        peliculas.insertAdjacentHTML('afterbegin', videoMostrar);
+    }
+    insertarSerie = (videoMostrar) => {
+        series.insertAdjacentHTML('afterbegin', videoMostrar);
     }
 
+    return {
+        mostrandoMusica: (videoMostrar)=>{
+            insertarMusica(videoMostrar);
+        },
+        mostrandoPelicula: (videoMostrar)=>{
+            insertarPelicua(videoMostrar);
+        },
+        mostrandoSeries: (videoMostrar)=>{
+            insertarSerie(videoMostrar);
+        }
+    }
 })();
 
 let videoMusica = `<iframe width="560" height="315" src="https://www.youtube.com/embed/VDd_sdAMbtE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`; 
@@ -26,9 +34,25 @@ let videoSerie = `<iframe width="560" height="315" src="https://www.youtube.com/
 
 class Video {
     constructor(videoMusica, videoPelicula, videoSeries){
-        this.videoMusica = videoMusica;
-        this.videoPelicula = videoPelicula;
-        this.videoSeries = videoSeries;
+        let _videoMusica = videoMusica;
+        let _videoPelicula = videoPelicula;
+        let _videoSeries = videoSeries;
+
+        this.getVideoMusica = () => _videoMusica;
+        this.getVideoPelicula = () => _videoPelicula;
+        this.getVideoSeries = () => _videoSeries;
+    }
+
+    get videoMusica(){
+        return this.getVideoMusica();
+    }
+
+    get videoPelicula(){
+        return this.getVideoPelicula();
+    }
+
+    get videoSeries(){
+        return this.getVideoSeries();
     }
 
     mostrarMusica(){
