@@ -18,7 +18,7 @@ let buscador = (event) => {
                 let repos = '';
                 resp[1].forEach(element => {
                     repos += `
-                        <p>${element.name}</p>
+                        <p><a href="${element.html_url}" target="_blank">${element.name}</a></p>
                     `;
                 });
                 resultados.innerHTML = `
@@ -54,12 +54,12 @@ formulario.addEventListener('submit',buscador);
 
 const getUser = async (nombre) => {
    const url = `${baseUrl}/${nombre}`;
-   return request(url);
+   return await request(url);
 }
 
 const getRepo = async (nombre,pagina,repoPagina) => {
    const url = `${baseUrl}/${nombre}/repos?page=${pagina}&per_page=${repoPagina}`;
-   return request(url);
+   return await request(url);
 }
 
 const request = async (url) => {
