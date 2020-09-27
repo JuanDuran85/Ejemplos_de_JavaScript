@@ -3,11 +3,19 @@ import Personajes from './personajes.js';
 export default class DetallesPersonajes extends Personajes {
     constructor(id,name, status, species, gender, created, origin, location, episode){
         super(id);
+
         let _name = name;
         this.getName = () => _name;
         this.setName = (nuevo_name) => _name = nuevo_name;
-        this._status = status;
-        this._species = species;
+
+        let _status = status;
+        this.getStatus = () => _status;
+        this.setStatus = (nuevo_status) => _status = nuevo_status;
+
+        let _species = species;
+        this.getSpecies = () => _species;
+        this.setSpecies = (nuevo_species) => _species = nuevo_species;
+
         this._gender = gender;
         this._created = created;
         this._origin = origin;
@@ -18,9 +26,20 @@ export default class DetallesPersonajes extends Personajes {
     get name(){
         return this.getName();
     }
-
     set name(nuevo_name){
         this.setName(nuevo_name);
+    }
+    get status(){
+        return this.getStatus();
+    }
+    set status(nuevo_status){
+        this.setStatus(nuevo_status);
+    }
+    get species(){
+        return this.getSpecies();
+    }
+    set species(nuevo_species){
+        this.setSpecies(nuevo_species);
     }
 
     infoModal(){
@@ -29,8 +48,8 @@ export default class DetallesPersonajes extends Personajes {
                 <li><span>ID: ${this.id}</span></li>
                 <li><span>Nombre: ${this.name}</span></li>
                 <li><span>Genero: ${this._gender}</span></li>
-                <li><span>Especie: ${this._species}</span></li>
-                <li><span>Status: ${this._status}</span></li>
+                <li><span>Especie: ${this.species}</span></li>
+                <li><span>Status: ${this.status}</span></li>
                 <li><span>Creado: ${this._created}</span></li>
                 <li><span>Origen: ${this._origin.name}</span></li>
                 <li><span>Cantidad de Episodios: ${this._episode.length}</span></li>
@@ -42,6 +61,7 @@ export default class DetallesPersonajes extends Personajes {
         return `
             <ul>
                 <li><span>${this.id}</span></li>
+                <li><span>${this.species}</span></li>
             </ul>
         `
     }
