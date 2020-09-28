@@ -4,11 +4,14 @@ let llamadoPersonajes = (()=>{
 
     const urlAPI = 'https://rickandmortyapi.com/api/character/';
     const resultados = document.querySelector('.resultados');
+    let datosPersonajes;
 
     let obtenerPersonaje = async () => {
         try {
             let respuesta = await fetch(urlAPI);
             let datos = await respuesta.json();
+            datosPersonajes = datos;
+            console.log(datosPersonajes);
             return datos;
         } catch (error) {
             console.error(error);
@@ -68,8 +71,18 @@ let llamadoPersonajes = (()=>{
                 `;
             });
         },
+        funcionPublica: () => {
+            let cantidadPersonajes = document.querySelector("#cantidadPersonajes");
+            let spinnerBorder = document.querySelector(".spinner-border");
+            spinnerBorder.remove();
+            cantidadPersonajes.innerHTML = datosPersonajes.results.length;
+        }
     }
 })();
 
 llamadoPersonajes.mostrando();
+
+setTimeout(()=>{
+    llamadoPersonajes.funcionPublica();
+},2000);
 

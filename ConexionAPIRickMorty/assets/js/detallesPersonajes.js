@@ -16,7 +16,10 @@ export default class DetallesPersonajes extends Personajes {
         this.getSpecies = () => _species;
         this.setSpecies = (nuevo_species) => _species = nuevo_species;
 
-        this._gender = gender;
+        let _gender = gender;
+        this.getGender = () => _gender;
+        this.setGender = (nuevo_gender) => _gender = nuevo_gender;
+
         this._created = created;
         this._origin = origin;
         this._location = location;
@@ -41,13 +44,19 @@ export default class DetallesPersonajes extends Personajes {
     set species(nuevo_species){
         this.setSpecies(nuevo_species);
     }
+    get gender(){
+        return this.getGender();
+    }
+    set gender(nuevo_gender){
+        this.setGender(nuevo_gender);
+    }
 
     infoModal(){
         return `
             <ul>
                 <li><span>ID: ${this.id}</span></li>
                 <li><span>Nombre: ${this.name}</span></li>
-                <li><span>Genero: ${this._gender}</span></li>
+                <li><span>Género: ${this.gender}</span></li>
                 <li><span>Especie: ${this.species}</span></li>
                 <li><span>Status: ${this.status}</span></li>
                 <li><span>Creado: ${this._created}</span></li>
