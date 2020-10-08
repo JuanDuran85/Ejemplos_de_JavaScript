@@ -50,7 +50,30 @@ export default class DetallesPersonajes extends Personajes {
     set gender(nuevo_gender){
         this.setGender(nuevo_gender);
     }
-
+    get created() {
+        return this._created;
+    }
+    set created(nCreated){
+        this._created = nCreated;
+    }
+    get origin() {
+        return this._origin;
+    }
+    set origin(nOrigin){
+        this._origin = nOrigin;
+    }
+    get location() {
+        return this._location;
+    }
+    set location(nLocation){
+        this._location = nLocation;
+    }
+    get episode() {
+        return this._episode;
+    }
+    set episode(nEpisode){
+        this._episode = nEpisode;
+    }
     infoModal(){
         return `
             <ul>
@@ -59,9 +82,9 @@ export default class DetallesPersonajes extends Personajes {
                 <li><span>Género: ${this.gender}</span></li>
                 <li><span>Especie: ${this.species}</span></li>
                 <li><span>Status: ${this.status}</span></li>
-                <li><span>Creado: ${this._created}</span></li>
-                <li><span>Origen: ${this._origin.name}</span></li>
-                <li><span>Cantidad de Episodios: ${this._episode.length}</span></li>
+                <li><span>Creado: ${this.created}</span></li>
+                <li><span>Origen: ${this.origin.name}</span></li>
+                <li><span>Cantidad de Episodios: ${this.episode.length}</span></li>
             </ul>
         `
     }
