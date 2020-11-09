@@ -63,3 +63,34 @@ function Usuario(tipo){
 var usuario1 = new Usuario('Administrador');
 usuario1.getTipo = "Invitado";
 console.log(usuario1.getTipo);
+
+//----------------------------------------------------------
+
+function Vehiculos(marca) {
+    let _marca = marca;
+
+    Object.defineProperty(this, "_getMarca", {
+        get: function () {
+            return _marca
+        }
+    });
+
+    Object.defineProperty(this, "_setMarca", {
+        set: function (marca) {  
+            _marca = marca
+        }
+    });
+};
+
+Vehiculos.prototype.getMarca = function(){
+    return this._getMarca;
+};
+
+Vehiculos.prototype.setMarca = function(marca){
+    this._setMarca = marca;
+}
+
+var v1 = new Vehiculos("Ford");
+console.log(v1.getMarca());
+v1.setMarca("Kia");
+console.log(v1.getMarca());
