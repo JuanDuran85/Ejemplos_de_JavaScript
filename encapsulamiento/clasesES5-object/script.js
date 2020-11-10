@@ -158,3 +158,84 @@ console.log(c1.getNumero());
 console.log(c2.getNumero());
 console.log(c1.getPinta());
 console.log(c2.getPinta());
+
+// --------------------------------------------------------------------
+
+function Persona(nombre, mascota){
+    var _nombre =  nombre;   
+    var _mascota = mascota;
+
+    Object.defineProperty(this,"_nombre", {
+        get: function(){
+            return _nombre;
+        },
+        set: function(nuevoNombre){
+            _nombre = nuevoNombre;
+        }
+    });
+    Object.defineProperty(this,"_mascota", {
+        get: function(){
+            return _mascota;
+        }
+    });
+};
+
+function Mascota(nombre){
+    var _nombre = nombre;
+
+    Object.defineProperty(this,"_nombre", {
+        get: function(){
+            return _nombre;
+        },
+        set: function(nuevoNombre){
+            _nombre = nuevoNombre;
+        }
+    });
+};
+
+Persona.prototype.getNombrePersona = function () {  
+    return this._nombre;
+}
+Mascota.prototype.getNombreMascota = function () {  
+    return this._nombre;
+}
+
+Persona.prototype.setNombrePersona = function (nuevoNombre) {
+    this._nombre = nuevoNombre;
+}
+Mascota.prototype.setNombreMascota = function (nuevoNombre) {
+    this._nombre = nuevoNombre;
+}
+
+var m1 = new Mascota('Snowball');
+var p1 = new Persona('Julián', m1);
+console.log(p1);
+console.log(m1);
+console.log(m1.getNombreMascota());
+console.log(p1.getNombrePersona());
+m1.setNombreMascota('Taty');
+console.log(m1.getNombreMascota());
+
+//-----------------------------------------------------------------------
+
+function Proyecto(nombre, persona){
+    this.nombre = nombre;
+    this.persona = persona || [];
+}
+
+function Persona(nombre){
+    this.nombre = nombre;
+}
+
+Proyecto.prototype.setAgregarPersona = function(persona_nueva){
+    this.persona.push(persona_nueva);
+}
+
+var persona1 = new Persona('Juan');
+var persona2 = new Persona('Jocelyn');
+var proyecto1 = new Proyecto('JS',[persona1,persona2]);
+console.log(proyecto1);
+var persona3 = new Persona('Yecenia');
+proyecto1.setAgregarPersona(persona3);
+console.log(proyecto1);
+console.log(proyecto1.nombre);
