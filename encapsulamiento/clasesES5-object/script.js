@@ -67,7 +67,7 @@ console.log(usuario1.getTipo);
 //----------------------------------------------------------
 
 function Vehiculos(marca) {
-    let _marca = marca;
+    var _marca = marca;
 
     Object.defineProperty(this, "_getMarca", {
         get: function () {
@@ -88,9 +88,73 @@ Vehiculos.prototype.getMarca = function(){
 
 Vehiculos.prototype.setMarca = function(marca){
     this._setMarca = marca;
-}
+};
 
 var v1 = new Vehiculos("Ford");
 console.log(v1.getMarca());
 v1.setMarca("Kia");
 console.log(v1.getMarca());
+v1._marca = "Toyota";
+console.log(v1.getMarca());
+
+// -------------------------------------------------------------------
+function Carta(numero, pinta){
+    var _numero = numero;
+    var _pinta = pinta;
+
+    Object.defineProperty(this, "_getNumero", {
+        get: function () {
+            return _numero;
+        }
+    });
+
+    Object.defineProperty(this, "_setNumero", {
+        set: function (numero) {  
+            _numero = numero;
+        }
+    });
+
+    Object.defineProperty(this, "_getPinta", {
+        get: function () {
+            return _pinta
+        }
+    });
+
+    Object.defineProperty(this, "_setPinta", {
+        set: function (pinta) {  
+            _pinta = pinta
+        }
+    });
+};
+
+Carta.prototype.getNumero = function(){
+    return this._getNumero;
+};
+
+Carta.prototype.setNumero = function(numero){
+    this._setNumero = numero;
+};
+
+Carta.prototype.getPinta = function(){
+    return this._getPinta;
+};
+
+Carta.prototype.setPinta = function(pinta){
+    this._setPinta = pinta;
+};
+  
+c1 = new Carta(2, 'Corazón');
+c2 = new Carta(4, 'Espadas');
+
+console.log(c1.getNumero());
+console.log(c2.getNumero());
+console.log(c1.getPinta());
+console.log(c2.getPinta());
+c1.setNumero(5);
+c2.setNumero(7);
+c1.setPinta('Tréboles');
+c2.setPinta('Rombos');
+console.log(c1.getNumero());
+console.log(c2.getNumero());
+console.log(c1.getPinta());
+console.log(c2.getPinta());
