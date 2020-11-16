@@ -105,3 +105,23 @@ console.log(consultario_xyz.getName());
 consultario_xyz.getPacientes();
 consultario_xyz.getPacientePorNombre('Jocelyn');
 consultario_xyz.getPacientePorNombre('Maria');
+
+//------------------------------------------------------------------
+
+function Vehiculos(marca) {
+    this._marca =  marca;
+
+    Object.defineProperty(this,'marca',{
+        get: function () {
+            return this._marca;
+        },
+        set: function (nuevaMarca){
+            this._marca = nuevaMarca;
+        }
+    })
+  }
+  
+  var v1 = new Vehiculos("Ford");
+  console.log(v1.marca);
+  v1.marca = "Kia";
+  console.log(v1.marca);

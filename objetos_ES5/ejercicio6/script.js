@@ -59,3 +59,23 @@ r2 = new Rectangulo(4, 8);
 
 console.log(r1.calcularArea() + r2.calcularArea());
 console.log(r1.calcularPerimetro() + r2.calcularPerimetro());
+
+// ------------------------------------------------------------------------------------
+
+function FiguraGeometrica(ancho, alto) {
+    this.ancho = ancho;
+    this.alto = alto;
+};
+
+function Cuadrado(lado){
+    FiguraGeometrica.call(this, lado, lado);
+};
+Cuadrado.prototype = Object.create(FiguraGeometrica.prototype);
+
+Cuadrado.prototype.calcularArea = function () {  
+    return this.ancho * this.alto;
+};
+
+var cuadrado1 = new Cuadrado(3);
+console.log(cuadrado1);
+console.log(cuadrado1 .calcularArea());
