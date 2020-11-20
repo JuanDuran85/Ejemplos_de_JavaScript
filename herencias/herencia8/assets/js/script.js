@@ -11,15 +11,15 @@ let agregando = (event) => {
 
     switch (tipo) {
         case 'perro':
-                let perro = new Perro(propietario,direccion,telefono,nombreMascota,tipo,enfermedad);
+                let perro = new Mascota(propietario,direccion,telefono,tipo,nombreMascota,enfermedad);
                 mostrarResultado(perro);
             break;
         case 'gato':
-                let gato = new Gato(propietario,direccion,telefono,nombreMascota,tipo,enfermedad);
+                let gato = new Mascota(propietario,direccion,telefono,tipo,nombreMascota,enfermedad);
                 mostrarResultado(gato);
             break;
         case 'conejo':
-                let conejo = new Conejo(propietario,direccion,telefono,nombreMascota,tipo,enfermedad);
+                let conejo = new Mascota(propietario,direccion,telefono,tipo,nombreMascota,enfermedad);
                 mostrarResultado(conejo);
             break;
     
@@ -33,7 +33,7 @@ let mostrarResultado = (valor) => {
     let li1 = document.createElement('li');
     li1.innerHTML = `${valor.datosPropietario()}`;
     let li2 = document.createElement('li');
-    li2.innerHTML = `${valor.datosAnimal()}, y la enfermedad es: ${valor.enfermedad}`;
+    li2.innerHTML = `${valor.datosAnimal()}, mientras que el nombre de la mascota es: ${valor.nombreA} y la enfermedad es: ${valor.enfermedad}`;
     resultado.appendChild(li1);
     resultado.appendChild(li2);
 }
@@ -49,57 +49,35 @@ class Propietario {
     datosPropietario(){
         return `El nombre del dueño es: ${this.nombreP}. El domicilio es: ${this.direccion}, y el número telefónico de contacto: ${this.telefono}`;
     }
-}
+};
 
 class Animal extends Propietario{
-    constructor(nombreP,direccion,telefono,nombreA,tipo) {
+    constructor(nombreP,direccion,telefono,tipo) {
         super(nombreP,direccion,telefono)
-        this.nombreA = nombreA;
         this.tipo = tipo;
     }
     datosAnimal(){
-        return `El nombre del animal es: ${this.nombreA}. Siendo este un: ${this.tipo}`;
+        return `El tipo de animal es un: ${this.tipo}`;
     }
-}
+};
  
-class Perro extends Animal {
-    constructor(nombreP,direccion,telefono,nombreA,tipo,enfermedad) {
-        super(nombreP,direccion,telefono,nombreA,tipo);
+class Mascota extends Animal {
+    constructor(nombreP,direccion,telefono,tipo,nombreA,enfermedad) {
+        super(nombreP,direccion,telefono,tipo);
+        this._nombreA = nombreA;
         this._enfermedad = enfermedad;
     }
-        
+
+    get nombreA() {
+        return this._nombreA;
+    }
+    set nombreA(nombreA) {
+        this._nombreA = nombreA;
+    }
     get enfermedad() {
         return this._enfermedad;
     }
     set enfermedad(enfermedad) {
         this._enfermedad = enfermedad;
     }
-}
- 
-class Gato extends Animal {
-    constructor(nombreP,direccion,telefono,nombreA,tipo,enfermedad) {
-        super(nombreP,direccion,telefono,nombreA,tipo);
-        this._enfermedad = enfermedad;
-    }
-        
-    get enfermedad() {
-        return this._enfermedad;
-    }
-    set enfermedad(enfermedad) {
-        this._enfermedad = enfermedad;
-    }
-}
- 
-class Conejo extends Animal {
-    constructor(nombreP,direccion,telefono,nombreA,tipo,enfermedad) {
-        super(nombreP,direccion,telefono,nombreA,tipo);
-        this._enfermedad = enfermedad;
-    }
-        
-    get enfermedad() {
-        return this._enfermedad;
-    }
-    set enfermedad(enfermedad) {
-        this._enfermedad = enfermedad;
-    }
-}
+};
