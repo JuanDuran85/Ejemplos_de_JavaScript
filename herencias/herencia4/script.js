@@ -39,3 +39,46 @@ acustica.datosGuitarra();
 acustica.datosInstrumento();
 electrica.datosGuitarra();
 electrica.datosInstrumento();
+
+// ------------------------------------------------------------------------------
+
+class Tienda {
+    constructor(direccion) {
+        this.direccion = direccion;
+    }
+    datosTienda(){
+        console.log(`La dirección del local es: ${this.direccion}`);
+    }
+}
+
+class Instrumento extends Tienda {
+    constructor(direccion, serial) {
+        super(direccion)
+        this.serial = serial;
+
+    }
+    datosInstrumento(){
+        console.log(`El serial delo instrumento es es: ${this.serial}`);
+    }
+}
+
+class Cuerdas extends Instrumento {
+    constructor(direccion, serial, numeroCuerdas,) {
+        super(direccion, serial)
+        this.numeroCuerdas = numeroCuerdas;
+    }
+}
+
+class Viento extends Instrumento {
+    constructor(direccion, serial, material_cosntruc,) {
+        super(direccion, serial)
+        this.material_cosntruc = material_cosntruc;
+    }
+}
+
+let guitarra = new Cuerdas('Santiago de Chile', 'B00HQWRTTU', 6);
+let trompeta = new Viento('Santiago de Chile','XERF45TGFD','Metal');
+guitarra.datosTienda();
+guitarra.datosInstrumento();
+trompeta.datosTienda();
+trompeta.datosInstrumento();
