@@ -1,67 +1,49 @@
 let iifeGlobal = (()=>{
-    let musica = document.getElementById('musica');
-    let peliculas = document.getElementById('peliculas');
-    let series = document.getElementById('series');
-
-    let inyectarTodo = (urlMusica,urlPelicula,urlSerie) => {
-        musica.innerHTML = "";
-        peliculas.innerHTML = "";
-        series.innerHTML = "";
-        musica.insertAdjacentHTML('afterbegin', urlMusica);
-        peliculas.insertAdjacentHTML('afterbegin', urlPelicula);
-        series.insertAdjacentHTML('afterbegin', urlSerie);
+    let inyectarTodo = (url,id) => {
+        id.setAttribute('src', url);
+        id.style.display = 'block';
     };
 
     return {
-        mostrarTodo: (urlMusica,urlPelicula,urlSerie) => inyectarTodo(urlMusica,urlPelicula,urlSerie),
+        mostrarTodo: (url,id) => inyectarTodo(url,id),
     }
 })();
 
-let videoMusica = "https://www.youtube.com/embed/YODCM26JXOY";
-let videoPelicula = `<iframe width="560" height="315" src="https://www.youtube.com/embed/6ziBFh3V1aM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-let videoSeries = `<iframe width="560" height="315" src="https://www.youtube.com/embed/HhesaQXLuRY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-
 class Multimedia {
-    constructor(urlMusica,urlPelicula,urlSerie){
-        let _urlMusica = urlMusica;
-        let _urlPelicula = urlPelicula;
-        let _urlSerie = urlSerie;
+    constructor(url){
+        let _url = url;
 
-        this.getUrlMusica = () => _urlMusica;
-        this.setUrlMusica = (nueva) => _urlMusica = `${_urlMusica}&start=${nueva}`
-        this.getUrlPelicula = () => _urlPelicula;
-        this.getUrlSerie = () => _urlSerie;
+        this.getUrl = () => _url;
     }
 
-    get urlMusica(){
-        return this.getUrlMusica();
-    };
-    get urlPelicula(){
-        return this.getUrlPelicula();
-    };
-    get urlSerie(){
-        return this.getUrlSerie();
+    get url(){
+        return this.getUrl();
     };
 
-    startPlay(paramtro){
-        this.setUrlMusica(paramtro);
+    setInicio(){
+        return `Este metodo es para realizar un cambio en la URL del video`
     }
 }
 
 class Reproductor extends Multimedia {
-    constructor(urlMusica,urlPelicula,urlSerie,id){
-        super(urlMusica,urlPelicula,urlSerie);
-        this.id = id
+    constructor(url,id){
+        super(url);
+        let _id = id;
+
+        this.getId = ()=> _id;
     }
     playMultimedia(){
-        iifeGlobal.mostrarTodo(this.urlMusica, this.urlPelicula, this.urlSerie);
+        iifeGlobal.mostrarTodo(this.url,this.getId());
     }
-    startPlay(paramtro){
-        this.id.setAtribute('src',`${this.getUrlMusica}&start=${paramtro}`) 
+    setInicio(tiempo){
+        this.getId().setAttribute('src',`${this.url}?start=${tiempo}`) 
     }
 };
 
-let play = new Reproductor(videoMusica,videoPelicula,videoSeries);
-play.playMultimedia();
-
-//<iframe width="560" height="315" src="https://www.youtube.com/embed/3rDwoveujVo?start=610" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+let playMusica = new Reproductor("https://www.youtube.com/embed/YODCM26JXOY",musica);
+playMusica.playMultimedia();
+playMusica.setInicio(200);
+let playPelicula = new Reproductor("https://www.youtube.com/embed/6ziBFh3V1aM",peliculas);
+playPelicula.playMultimedia();
+let playSerie = new Reproductor("https://www.youtube.com/embed/HhesaQXLuRY",series);
+playSerie.playMultimedia();

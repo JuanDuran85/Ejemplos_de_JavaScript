@@ -5,3 +5,8 @@ body {
 img {
     width: 10%;
 }
+
+#musica, #peliculas, #series {
+    display: none;
+    margin: 0 auto;
+}
