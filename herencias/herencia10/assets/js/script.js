@@ -17,7 +17,7 @@ let iifeGlobal = (()=>{
     }
 })();
 
-let videoMusica = `<iframe width="560" height="315" src="https://www.youtube.com/embed/YODCM26JXOY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+let videoMusica = "https://www.youtube.com/embed/YODCM26JXOY";
 let videoPelicula = `<iframe width="560" height="315" src="https://www.youtube.com/embed/6ziBFh3V1aM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
 let videoSeries = `<iframe width="560" height="315" src="https://www.youtube.com/embed/HhesaQXLuRY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
 
@@ -28,6 +28,7 @@ class Multimedia {
         let _urlSerie = urlSerie;
 
         this.getUrlMusica = () => _urlMusica;
+        this.setUrlMusica = (nueva) => _urlMusica = `${_urlMusica}&start=${nueva}`
         this.getUrlPelicula = () => _urlPelicula;
         this.getUrlSerie = () => _urlSerie;
     }
@@ -42,19 +43,25 @@ class Multimedia {
         return this.getUrlSerie();
     };
 
-    playMultimedia(){
-        iifeGlobal.mostrarTodo(this.urlMusica, this.urlPelicula, this.urlSerie);
+    startPlay(paramtro){
+        this.setUrlMusica(paramtro);
     }
 }
 
 class Reproductor extends Multimedia {
-    constructor(urlMusica,urlPelicula,urlSerie){
+    constructor(urlMusica,urlPelicula,urlSerie,id){
         super(urlMusica,urlPelicula,urlSerie);
+        this.id = id
     }
     playMultimedia(){
         iifeGlobal.mostrarTodo(this.urlMusica, this.urlPelicula, this.urlSerie);
+    }
+    startPlay(paramtro){
+        this.id.setAtribute('src',`${this.getUrlMusica}&start=${paramtro}`) 
     }
 };
 
 let play = new Reproductor(videoMusica,videoPelicula,videoSeries);
 play.playMultimedia();
+
+//<iframe width="560" height="315" src="https://www.youtube.com/embed/3rDwoveujVo?start=610" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

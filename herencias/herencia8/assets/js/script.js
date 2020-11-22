@@ -30,10 +30,11 @@ let agregando = (event) => {
 
 let mostrarResultado = (valor) => {
     let resultado = document.querySelector('#resultado ul');
+    resultado.innerHTML = "";
     let li1 = document.createElement('li');
     li1.innerHTML = `${valor.datosPropietario()}`;
     let li2 = document.createElement('li');
-    li2.innerHTML = `${valor.datosAnimal()}, mientras que el nombre de la mascota es: ${valor.nombreA} y la enfermedad es: ${valor.enfermedad}`;
+    li2.innerHTML = `${valor.tipo}, mientras que el nombre de la mascota es: ${valor.nombreA} y la enfermedad es: ${valor.enfermedad}`;
     resultado.appendChild(li1);
     resultado.appendChild(li2);
 }
@@ -54,10 +55,10 @@ class Propietario {
 class Animal extends Propietario{
     constructor(nombreP,direccion,telefono,tipo) {
         super(nombreP,direccion,telefono)
-        this.tipo = tipo;
+        this._tipo = tipo;
     }
-    datosAnimal(){
-        return `El tipo de animal es un: ${this.tipo}`;
+    get tipo(){
+        return `El tipo de animal es un: ${this._tipo}`;
     }
 };
  
