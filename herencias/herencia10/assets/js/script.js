@@ -43,7 +43,7 @@ class Reproductor extends Multimedia {
 let playMusica = new Reproductor("https://www.youtube.com/embed/YODCM26JXOY",musica);
 playMusica.playMultimedia();
 playMusica.setInicio(200);
-let playPelicula = new Reproductor("https://youtu.be/5PSNL1qE6VY",peliculas);
+let playPelicula = new Reproductor("https://www.youtube.com/embed/5PSNL1qE6VY",peliculas);
 playPelicula.playMultimedia();
 let playSerie = new Reproductor("https://www.youtube.com/embed/HhesaQXLuRY",series);
 playSerie.playMultimedia();
