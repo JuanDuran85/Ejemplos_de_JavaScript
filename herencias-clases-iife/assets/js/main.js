@@ -1,9 +1,9 @@
+import Serie from './serie.js';
 import Personajes from './personajes.js';
 
 let llamadoPersonajes = (()=>{
 
     const urlAPI = 'https://rickandmortyapi.com/api';
-    let instanciPersonaje;
     let numeroPersonajes;
 
     let obtenerPersonaje = async (url) => {
@@ -17,13 +17,16 @@ let llamadoPersonajes = (()=>{
     };
 
     return {
-        infoPersonajes: async () => {
-            const personajes = await obtenerPersonaje(`${urlAPI}/character`);
+        personajes: async (nombre) => {
+            let serieRyM = new Serie(nombre);
+            let personajes = await obtenerPersonaje(`${urlAPI}/character`);
             numeroPersonajes = personajes.results.length;
-            personajes.results.forEach(element => {
-                instanciPersonaje = new Personajes(element.id,element.name, element.species, element.image);
-                resultados.innerHTML += instanciPersonaje.infoGeneral();
+            
+            personajes.results.forEach((element) => {
+                let instanciaPersonaje = new Personajes(element.id,element.name, element.species, element.image);
+                serieRyM.agregarPersonajes(instanciaPersonaje);
             });
+            serieRyM.getPersonajes();
         },
         nPersonajes: async () => {
             let cantidadPersonajes = document.querySelector("#cantidadPersonajes");
@@ -34,9 +37,8 @@ let llamadoPersonajes = (()=>{
     }
 })();
 
-llamadoPersonajes.infoPersonajes();
+llamadoPersonajes.personajes("Rick and Morty");
 
 setTimeout(()=>{
     llamadoPersonajes.nPersonajes();
-},2000);
-
+},2000)
