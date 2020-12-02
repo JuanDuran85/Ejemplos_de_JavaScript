@@ -1,5 +1,5 @@
 import Serie from './serie.js';
-import Personajes from './personajes.js';
+import Personaje from './personaje.js';
 
 let llamadoPersonajes = (()=>{
 
@@ -23,17 +23,19 @@ let llamadoPersonajes = (()=>{
             numeroPersonajes = personajes.results.length;
             
             personajes.results.forEach((element) => {
-                let instanciaPersonaje = new Personajes(element.id,element.name, element.species, element.image);
+                let instanciaPersonaje = new Personaje(element.id,element.name, element.species, element.image, element.gender, element.origin.name, element.location.name, element.status);
                 serieRyM.agregarPersonajes(instanciaPersonaje);
             });
+            
             serieRyM.getPersonajes();
+            serieRyM.modalPersonajes();
         },
         nPersonajes: async () => {
             let cantidadPersonajes = document.querySelector("#cantidadPersonajes");
             let spinnerBorder = document.querySelector(".spinner-border");
             spinnerBorder.remove();
             cantidadPersonajes.innerHTML = numeroPersonajes;
-        }
+        },
     }
 })();
 

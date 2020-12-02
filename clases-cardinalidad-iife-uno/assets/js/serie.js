@@ -11,10 +11,10 @@ export default class Serie {
             resultados.innerHTML += `
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 col-xl-3 my-3">
                     <div class="card">
-                        <img src="${personaje.getImagen()}" class="img-fluid" alt="${personaje.getId()}">
+                        <img src="${personaje.imagen}" class="img-fluid" alt="${personaje.obtenerId()}">
                         <div class="card-body">
-                            <h5 class="card-title">${personaje.getNombre()}</h5>
-                            <p class="card-text">Especie: ${personaje.getEspecie()}</p>
+                            <h5 class="card-title">${personaje.obtenerNombre()}</h5>
+                            <p class="card-text">Especie: ${personaje.especie}</p>
                         </div>
                     </div>
                 </div>

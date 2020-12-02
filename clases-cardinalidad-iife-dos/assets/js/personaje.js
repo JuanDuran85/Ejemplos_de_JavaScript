@@ -1,5 +1,5 @@
 export default class Personajes {
-    constructor(id,nombre,especie,imagen){
+    constructor(id,nombre,especie,imagen,genero,origen,locacion,estado){
         let _id = id;
         this.getId = () => _id;
 
@@ -11,6 +11,11 @@ export default class Personajes {
 
         let _imagen = imagen;
         this.getImagen = () => _imagen;
+
+        this.genero = genero;
+        this.origen = origen;
+        this.locacion = locacion;
+        this.estado = estado;
     }
     getId(){
         return this.getId();
