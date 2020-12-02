@@ -17,16 +17,16 @@ export default class Personajes {
         this.locacion = locacion;
         this.estado = estado;
     }
-    getId(){
+    obtenerId(){
         return this.getId();
     }
-    getNombre(){
+    obtenerNombre(){
         return this.getNombre();
     }
-    getEspecie(){
+    obtenerEspecie(){
         return this.getEspecie();
     }
-    getImagen(){
+    obtenerImagen(){
         return this.getImagen();
     }
 }
