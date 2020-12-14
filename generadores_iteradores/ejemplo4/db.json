@@ -136,6 +136,104 @@
             "servingSize": "2.5",
             "calories": "460"
           }
+        },
+        {
+          "1607913185400": {
+            "food": "apple",
+            "servingSize": "4",
+            "calories": "352"
+          }
+        },
+        {
+          "1607915179079": {
+            "food": "salt and vinegar chips",
+            "servingSize": "2",
+            "calories": "180"
+          }
+        },
+        {
+          "1607915191864": {
+            "food": "ribeye steak",
+            "servingSize": "3",
+            "calories": "1500"
+          }
+        },
+        {
+          "1607915366669": {
+            "food": "lentils",
+            "servingSize": "2",
+            "calories": "460"
+          }
+        },
+        {
+          "1607915379876": {
+            "food": "almonds",
+            "servingSize": "3",
+            "calories": "492"
+          }
+        },
+        {
+          "1607915911656": {
+            "food": "chicken breast",
+            "servingSize": "25",
+            "calories": "3125"
+          }
+        },
+        {
+          "1607915937309": {
+            "food": "lentils",
+            "servingSize": "25",
+            "calories": "5750"
+          }
+        },
+        {
+          "1607915951831": {
+            "food": "ribeye steak",
+            "servingSize": "15",
+            "calories": "7500"
+          }
+        },
+        {
+          "1607915967228": {
+            "food": "almonds",
+            "servingSize": "20",
+            "calories": "3280"
+          }
+        },
+        {
+          "1607917067632": {
+            "food": "oreos",
+            "servingSize": "4",
+            "calories": "920"
+          }
+        },
+        {
+          "1607917077301": {
+            "food": "oreos",
+            "servingSize": "r",
+            "calories": "NaN"
+          }
+        },
+        {
+          "1607917150391": {
+            "food": "oreos",
+            "servingSize": "3",
+            "calories": "690"
+          }
+        },
+        {
+          "1607917157255": {
+            "food": "oreos",
+            "servingSize": "r",
+            "calories": "NaN"
+          }
+        },
+        {
+          "1607917179945": {
+            "food": "oreos",
+            "servingSize": "'5'",
+            "calories": "NaN"
+          }
         }
       ]
     }

@@ -7,90 +7,56 @@ const readline = require('readline').createInterface({
 })
 
 readline.prompt();
+
 readline.on('line', async line => {
     switch (line.trim()) {
         case 'list vegan foods': {
-            axios.get('http://localhost:3000/food').then(({data}) => {
-                let index = 0;
-                const veganOnly = data.filter(result => result.dietary_preferences.includes('vegan'));
-                console.log('vegan food list');
-                const veganIterable = {
-                    [Symbol.iterator]() {
-                        return {
-                            [Symbol.iterator]() {return this},
-                            next() {
-                                const current = veganOnly[index];
-                                index++;
-                                if (current) {
-                                    return {
-                                        value: current,
-                                        done: false
-                                    }
-                                } else {
-                                     return {
-                                        value: current,
-                                        done: true    
-                                     }                                   
-                                }
-                            }
-                        }
-                    }
-                };
-                for (const valor of veganIterable) {
-                    console.log(valor.name);
+            const {data} = await axios.get('http://localhost:3000/food');
+            function* listVeganFoods() {
+                try {
+                    let index = 0;
+                    const veganOnly = data.filter(food => food.dietary_preferences.includes('vegan'));
+                    console.log('---- vegan food list ----');
+                    while (veganOnly[index]) {
+                        yield veganOnly[index];
+                        index++;
+                    };
+                } catch (error) {
+                    console.log('Somethings went wrong while listing vegan items', {error});
                 }
-                readline.prompt();
-            });
+            }
+            for (const valor of listVeganFoods()) {
+                console.log(valor.name);
+            }
+            readline.prompt();
         }
         break;
         case 'log': {
             const { data } = await axios.get('http://localhost:3000/food');
             const it = data[Symbol.iterator]();
             let actionIt;
-            const actionIterator = {
-                [Symbol.iterator](){
-                    let positions = [...this.actions];
-                    return {
-                        [Symbol.iterator](){ return this;},
-                        next(...args){
-                            if(positions.length > 0){
-                                const position = positions.shift();
-                                const result = position(...args);
-                                return {
-                                    value: result,
-                                    done: false
-                                }
-                            } else {
-                                return {done: true}
-                            }
-                        },
-                        return() {
-                            positions = [];
-                            return {done: true}
-                        },
-                        throw(error){
-                            console.log(error);
-                            return {
-                                value: undefined,
-                                done: true
-                            }
-                        }
-                    }
-                },
-                actions: [askForServingSize, displayCalories]
-            };
-
-            function askForServingSize(food) {
+            function* actionGenerator() {
+                try {
+                    const food = yield;
+                    const servingSize = yield askForServingSize();
+                    yield displayCalories(servingSize,food);
+                } catch (error) {
+                    console.log({error})
+                }
+            }
+            function askForServingSize() {
                 readline.question("How many servings did you eat? (as a decimal: 1, 0.5, 1.25, etc...) ", servingSize =>{
                     if (servingSize === 'nevermind' || servingSize === 'n') {
                         actionIt.return();
+                    } else if(typeof parseInt(servingSize) != 'number' || parseInt(servingSize) == NaN) {
+                        actionIt.throw('Please, numbres only');
                     } else {
-                        actionIt.next(servingSize, food);
+                        actionIt.next(servingSize);
                     }
                 })
             };
 
-            async function displayCalories (servingSize,food) {
+            async function displayCalories(servingSize,food) {
                 const calories = food.calories;
                 console.log(`${food.name} with a servinf size of ${servingSize} has a ${Number.parseFloat(calories * parseInt(servingSize, 10)).toFixed()} calories`);
                 const { data } = await axios.get('http://localhost:3000/users/1');
@@ -123,7 +89,8 @@ readline.on('line', async line => {
                     const food = position.value.name;
                     if(food === item){
                         console.log(`${item} has ${position.value.calories} calories`);
-                        actionIt = actionIterator[Symbol.iterator]();
+                        actionIt = actionGenerator();
+                        actionIt.next();
                         actionIt.next(position.value);
                     };
                     position = it.next();
@@ -131,6 +98,47 @@ readline.on('line', async line => {
                 readline.prompt();
             })
         }
-        break;
+            break;
+        case `today's log`: {
+            readline.question('Email: ', async emailAddress => {
+                const {data} = await axios.get(`http://localhost:3000/users?email=${emailAddress}`)
+                const foodLog = data[0].log || [];
+                let totalCalories = 0;
+
+                function* getFoodLog() {
+                    try {
+                        yield* foodLog;
+                    } catch (error) {
+                        console.log('Error reading the food log', {error});
+                    }
+                };
+
+                const logIterator = getFoodLog()
+                for (const entry of logIterator) {
+                    const timestamp = Object.keys(entry)[0];
+                    if (isToday(new Date(Number(timestamp)))) {
+                        console.log(`${entry[timestamp].food}, ${entry[timestamp].servingSize} serving(s)`);
+                        totalCalories += parseFloat(entry[timestamp].calories);
+                        if (totalCalories > 5000){
+                            console.log('Impressive! You have reached 5,000 calories');
+                            logIterator.return();
+                        }
+                    }
+                };
+                console.log("-----------------------------------------");
+                console.log(`Total Calories: ${totalCalories}`);
+                readline.prompt();
+            });
+        }
+            break;
     }
 });
+
+function isToday(timestamp) {
+    const today = new Date();
+    return ( 
+        timestamp.getDate() === today.getDate() &&
+        timestamp.getMonth() === today.getMonth() &&
+        timestamp.getFullYear() === today.getFullYear()
+    );
+};
