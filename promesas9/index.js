@@ -12,11 +12,26 @@ comidas.then(result => console.log(result)).catch(error => console.log(error)).f
 
 const compras = new Promise((resolve, reject)=>{
     setTimeout(()=>{
-        resolve({
-            done: true,
-            cID: 45433434
-        })
+        Promise.race([pago1,pago2]).then(result => {
+            resolve({
+                done: true,
+                cID: 45433434,
+                pago: result
+            });
+        });
     },2000);
+});
+
+let pago1 = new Promise((resolve,reject)=>{
+    setTimeout(() => {
+        resolve('Pago 1');
+    },3573);
+});
+
+let pago2 = new Promise((resolve,reject)=>{
+    setTimeout(() => {
+        resolve('Pago 2');
+    },3245);
 });
 
 const trasnporte = new Promise((resolve, reject)=>{
@@ -40,6 +55,8 @@ function pedido() {
         })
         .catch(error => console.log(error))
         .finally(()=>console.log("Finalizado"));
+
+        Promise.all([compras,trasnporte]).then(result => console.log(result)).catch(error => console.log(error));
 };
 
 pedido();
