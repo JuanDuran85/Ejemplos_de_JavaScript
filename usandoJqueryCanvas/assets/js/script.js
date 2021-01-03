@@ -5,19 +5,18 @@ $(function () {
     $('form').on('submit', function (event){
         event.preventDefault();
         $("#resultado").empty();
-        idHero = parseInt($('#idHero').val());
-        console.log(idHero);
-        consulta(idHero);
+        $("#chartContainer").empty();
+        hero = parseInt($('#hero').val());
+        consulta(hero);
     });
 
-    function consulta(idHero) {
-        if (idHero && expresion.test(idHero)){
+    function consulta(hero) {
+        if (hero && expresion.test(hero)){
             $.ajax({
                 dataType: "json",
                 type: "get",
-                url: "https://www.superheroapi.com/api.php/3525635500807579/"+idHero,
+                url: "https://www.superheroapi.com/api.php/3525635500807579/"+hero,
                 success: function (result) {
-                    console.log(result);
                     if (result.response === 'success') {
                         let resultado = `
                             <div class="w-50 mx-auto">
@@ -51,41 +50,40 @@ $(function () {
                             </div>
                         `;
                         $('#resultado').append(resultado);
-                    } else {
-                        alert("El personaje no existe");
-                    }
-                    
-                    let datosXY = [];
-                    for (const key in result.powerstats) {
-                        console.log(key, result.powerstats[key]);
-                        datosXY.push(
-                            {
-                                label: key, 
-                                y: parseInt(result.powerstats[key])
-                            });
-                    };
 
-                    var options = {
-                        title: {
-                            text: "Estadísticas de Poder"              
-                        },
-                        data: [              
-                            {
-                                type: "column",
-                                dataPoints: datosXY
-                            }
-                        ]
+                        let datosXY = [];
+                        for (const key in result.powerstats) {
+                            datosXY.push(
+                                {
+                                    label: key, 
+                                    y: parseInt(result.powerstats[key])
+                                });
+                        };
+    
+                        var options = {
+                            title: {
+                                text: "Estadísticas de Poder"              
+                            },
+                            data: [              
+                                {
+                                    type: "column",
+                                    dataPoints: datosXY
+                                }
+                            ]
+                        };
+                    
+                        $("#chartContainer").CanvasJSChart(options);
+
+                    } else {
+                        alert("El ID no se encuentra");
                     };
-                
-                    $("#chartContainer").CanvasJSChart(options);
                 },
                 error: function (error) {
                     console.error(error);
                 }
             });
-
         } else {
-            alert("Ingrese un número entre el 1 y el 731")
+            alert("Ingrese solamente un número");
         }; 
     }
 });
