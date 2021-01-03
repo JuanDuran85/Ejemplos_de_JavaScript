@@ -1,18 +1,18 @@
 $(document).ready(function () {
     $("#respuesta").empty();
-   let formulario = $('#formulario');
-   let expresion = /\d/gmi;
-   let numeroPoke = parseInt($('#numeroPoke').val()) || Math.floor(Math.random() * 100);
-   console.log(numeroPoke);
-   consulta(numeroPoke);
+    let formulario = $('#formulario');
+    let expresion = /\d/gmi;
+    let numeroPoke = parseInt($('#numeroPoke').val()) || Math.floor(Math.random() * 100);
+    console.log(numeroPoke);
+    consulta(numeroPoke);
 
-   formulario.on('submit', function (event){
-        event.preventDefault();
-        $("#respuesta").empty();
-        numeroPoke = parseInt($('#numeroPoke').val());
-        console.log(numeroPoke);
-        consulta(numeroPoke);
-   });
+    formulario.on('submit', function (event){
+            event.preventDefault();
+            $("#respuesta").empty();
+            numeroPoke = parseInt($('#numeroPoke').val());
+            console.log(numeroPoke);
+            consulta(numeroPoke);
+    });
 
     function consulta(numeroPoke) {
         if (numeroPoke && expresion.test(numeroPoke) && numeroPoke > 0 && numeroPoke <= 893){
