@@ -79,7 +79,7 @@ $(function () {
                     };
                 },
                 error: function (error) {
-                    console.error(error);
+                    alert("Error al consultar los datos");
                 }
             });
         } else {
