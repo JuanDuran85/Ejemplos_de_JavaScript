@@ -20,12 +20,12 @@ $(function () {
                     if (result.response === 'success') {
                         let resultado = `
                             <div class="w-50 mx-auto">
-                                <h3 class="text-center">Super Hero Encontrado</h3>
+                                <h3 class="text-center">SuperHero Encontrado</h3>
                                 <div class="card">
                                     <img src="${result.image.url}" class="card-img-top" alt="${result.name}">
                                     <div class="card-body">
                                         <h5 class="card-title">Nombre: ${result.name}</h5>
-                                        <p class="card-text">${result.connections['group-affiliation']}</p>
+                                        <p class="card-text">Conexiones: ${result.connections['group-affiliation']}</p>
                                     </div>
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item"><em>Publicado por</em>: ${result.biography.publisher}</li>
@@ -62,14 +62,17 @@ $(function () {
     
                         var options = {
                             title: {
-                                text: "Estadísticas de Poder"              
+                                text: "Estadísticas de Poder"
                             },
-                            data: [              
-                                {
-                                    type: "column",
+                            data: [{
+                                    type: "pie",
+                                    startAngle: 45,
+                                    showInLegend: "true",
+                                    legendText: "{label}",
+                                    indexLabel: "{label} ({y})",
+                                    yValueFormatString:"#,##0.#"%"",
                                     dataPoints: datosXY
-                                }
-                            ]
+                            }]
                         };
                     
                         $("#chartContainer").CanvasJSChart(options);
