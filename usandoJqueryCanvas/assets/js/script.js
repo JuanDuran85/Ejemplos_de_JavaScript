@@ -1,11 +1,19 @@
+// lo primero es crear la función principal de carga de jQuery
+$(document).ready(function () {
+    
+});
 $(function () {
 
     let expresion = /\d/gmi;
 
+    // se crea el escucha de evento para el formulario, y asi poder capturar el valor ingresado por el usuario
     $('form').on('submit', function (event){
+        // se previene el comportamiento por defecto del formulario
         event.preventDefault();
+        // se limpia el DOM donde se mostrará resultado
         $("#resultado").empty();
         $("#chartContainer").empty();
+        // se extrae la información ingresada por el usuario, convirtiendo el valor a número entero.
         hero = parseInt($('#hero').val());
         consulta(hero);
     });
