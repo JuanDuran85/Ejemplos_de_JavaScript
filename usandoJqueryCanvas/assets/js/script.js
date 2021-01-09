@@ -1,7 +1,4 @@
 // lo primero es crear la función principal de carga de jQuery
-$(document).ready(function () {
-    
-});
 $(function () {
 
     let expresion = /\d/gmi;
