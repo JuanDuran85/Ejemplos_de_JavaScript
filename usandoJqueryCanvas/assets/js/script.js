@@ -3,58 +3,50 @@ $(function () {
 
     let expresion = /\d/gmi;
 
-    // se crea el escucha de evento para el formulario, y asi poder capturar el valor ingresado por el usuario
-    $('form').on('submit', function (event){
-        // se previene el comportamiento por defecto del formulario
-        event.preventDefault();
-        // se limpia el DOM donde se mostrará resultado
-        $("#resultado").empty();
-        $("#chartContainer").empty();
-        // se extrae la información ingresada por el usuario, convirtiendo el valor a número entero.
-        hero = parseInt($('#hero').val());
-        consulta(hero);
-    });
-
-    function consulta(hero) {
+    let consulta = (hero) => {
         if (hero && expresion.test(hero)){
             $.ajax({
                 dataType: "json",
                 type: "get",
-                url: "https://www.superheroapi.com/api.php/3525635500807579/"+hero,
-                success: function (result) {
+                url: `https://www.superheroapi.com/api.php/3525635500807579/${hero}`,
+                success: (result) => {
                     if (result.response === 'success') {
-                        let resultado = `
-                            <div class="w-50 mx-auto">
-                                <h3 class="text-center">SuperHero Encontrado</h3>
-                                <div class="card">
-                                    <img src="${result.image.url}" class="card-img-top" alt="${result.name}">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Nombre: ${result.name}</h5>
-                                        <p class="card-text">Conexiones: ${result.connections['group-affiliation']}</p>
+                        let resultado1 = `
+                            <h3 class="text-center">SuperHero Encontrado</h3>
+                            <div class="card">
+                                <div class="row no-gutters">
+                                    <div class="col-md-4">
+                                        <img src="${result.image.url}" class="card-img" alt="${result.name}">
                                     </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item"><em>Publicado por</em>: ${result.biography.publisher}</li>
-                                        <li class="list-group-item"><em>Ocupación:</em> ${result.work.occupation}</li>
-                                        <li class="list-group-item"><em>Primera Aparición:</em> ${result.biography['first-appearance']}</li>
-                                        <li class="list-group-item"><em>Altura:</em> ${result.appearance.height.join(" - ")}.</li>
-                                        <li class="list-group-item"><em>Peso:</em> ${result.appearance.weight.join(" - ")}.</li>
-                                        <li class="list-group-item"><em>Alianzas:</em>
-                                    
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Nombre: ${result.name}</h5>
+                                            <p class="card-text">Conexiones: ${result.connections['group-affiliation']}</p>
+                                            <ul class="list-group list-group-flush">
+                                                <li class="list-group-item"><em>Publicado por</em>: ${result.biography.publisher}</li>
+                                                <li class="list-group-item"><em>Ocupación:</em> ${result.work.occupation}</li>
+                                                <li class="list-group-item"><em>Primera Aparición:</em> ${result.biography['first-appearance']}</li>
+                                                <li class="list-group-item"><em>Altura:</em> ${result.appearance.height.join(" - ")}.</li>
+                                                <li class="list-group-item"><em>Peso:</em> ${result.appearance.weight.join(" - ")}.</li>
+                                                <li class="list-group-item"><em>Alianzas:</em>
                         `;
                         // aqui el alumno puede implementar el metodo each() de jQuery o simplemente usar un join
+                        let resultado2 = "";
                         result.biography.aliases.forEach(alianzas => {
-                            resultado += `
+                            resultado2 += `
                                 <span>${alianzas}</span>
                             `;
                         });
-
-                        resultado += `
-                                        </li>
-                                    </ul>
+                        // con esta variable se termina de cerrar las etiquetas de la tarjeta
+                        let resultado3 = `
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         `;
-                        $('#resultado').append(resultado);
+                        $('#resultado').append(resultado1+resultado2+resultado3);
 
                         let datosXY = [];
                         for (const key in result.powerstats) {
@@ -67,7 +59,7 @@ $(function () {
     
                         var options = {
                             title: {
-                                text: "Estadísticas de Poder"
+                                text: `Estadísticas de Poder para ${result.name}`
                             },
                             data: [{
                                     type: "pie",
@@ -86,7 +78,7 @@ $(function () {
                         alert("El ID no se encuentra");
                     };
                 },
-                error: function (error) {
+                error: () => {
                     alert("Error al consultar los datos");
                 }
             });
@@ -94,4 +86,17 @@ $(function () {
             alert("Ingrese solamente un número");
         }; 
     }
+
+    // se crea el escucha de evento para el formulario, y asi poder capturar el valor ingresado por el usuario
+    $('form').on('submit', (event) =>{
+        // se previene el comportamiento por defecto del formulario
+        event.preventDefault();
+        // se limpia el DOM donde se mostrará resultado
+        $("#resultado").html(" ");
+        $("#chartContainer").html(" ");
+        // se extrae la información ingresada por el usuario, convirtiendo el valor a número entero.
+        hero = parseInt($('#hero').val());
+        consulta(hero);
+    });
+    
 });
